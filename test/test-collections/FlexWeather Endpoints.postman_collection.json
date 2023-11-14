@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "e3ed8b94-efef-4c40-856c-a6a020851e8b",
+		"name": "FlexWeather Endpoints",
+		"description": "FlexWeather is an API that provides weather data for the US and Germany. It is functionally a wrapper for the the [National Weather Service API](https://www.weather.gov/documentation/services-web-api), notably providing the ability to get weather by lat/lon in a single request.\n\nWhile this API is focused on the US, you can also get weather for Germany, using data from [Deutscher Wetterdienst](https://www.dwd.de/DE/leistungen/opendata/opendata.html) (via the wonderful work of [BrightSky](https://brightsky.dev/)).\n\nThis project was created largely as a functional experiment by [Darren Krape](https://www.darrenkrape.com/). If you have questions about this API, please get in touch!",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14068225"
+	},
+	"item": [
+		{
+			"name": "Current weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/now?lat=52.5200&lon=13.4050&units=metric",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"now"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "52.5200",
+							"description": "Latitude of the location"
+						},
+						{
+							"key": "lon",
+							"value": "13.4050",
+							"description": "Longitude of the location"
+						},
+						{
+							"key": "units",
+							"value": "metric",
+							"description": "Unit type (metric, imperial)"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/now?lat=52.5200&lon=13.4050&units=metric",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"now"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "52.5200"
+								},
+								{
+									"key": "lon",
+									"value": "13.4050"
+								},
+								{
+									"key": "units",
+									"value": "metric"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"temperature_current\": 0,\n  \"temperature_max\": 0,\n  \"temperature_min\": 0,\n  \"temperature_unit\": \"c\",\n  \"condition\": \"sunny\",\n  \"wind_speed\": 0,\n  \"wind_speed_unit\": \"km/h\",\n  \"wind_direction\": \"N\",\n  \"location\": \"Berlin, DE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Today's weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/today?lat=52.5200&lon=13.4050&units=metric",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"today"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "52.5200",
+							"description": "Latitude of the location"
+						},
+						{
+							"key": "lon",
+							"value": "13.4050",
+							"description": "Longitude of the location"
+						},
+						{
+							"key": "units",
+							"value": "metric",
+							"description": "Unit type (metric, imperial)"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/today?lat=52.5200&lon=13.4050&units=metric",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"today"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "52.5200"
+								},
+								{
+									"key": "lon",
+									"value": "13.4050"
+								},
+								{
+									"key": "units",
+									"value": "metric"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"temperature_max\": 0,\n  \"temperature_min\": 0,\n  \"temperature_unit\": \"c\",\n  \"condition\": \"sunny\",\n  \"location\": \"Berlin, DE\",\n  \"hours\": [\n    {\n      \"timestamp\": \"2022-02-22T17:00:00+01:00\",\n      \"temperature_unit\": \"c\",\n      \"condition\": \"dry\",\n      \"wind_speed\": -31082164.571000353,\n      \"wind_speed_unit\": \"km/h\",\n      \"wind_direction\": \"N\"\n    },\n    {\n      \"timestamp\": \"2022-02-22T17:00:00+01:00\",\n      \"temperature_unit\": \"c\",\n      \"condition\": \"dry\",\n      \"wind_speed\": 75918376.62527704,\n      \"wind_speed_unit\": \"km/h\",\n      \"wind_direction\": \"N\"\n    }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Tomorrow's weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tomorrow?lat=52.5200&lon=13.4050&units=metric",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tomorrow"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "52.5200",
+							"description": "Latitude of the location"
+						},
+						{
+							"key": "lon",
+							"value": "13.4050",
+							"description": "Longitude of the location"
+						},
+						{
+							"key": "units",
+							"value": "metric",
+							"description": "Unit type (metric, imperial)"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tomorrow?lat=52.5200&lon=13.4050&units=metric",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tomorrow"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "52.5200"
+								},
+								{
+									"key": "lon",
+									"value": "13.4050"
+								},
+								{
+									"key": "units",
+									"value": "metric"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"temperature_max\": 0,\n  \"temperature_min\": 0,\n  \"temperature_unit\": \"c\",\n  \"condition\": \"sunny\",\n  \"location\": \"Berlin, DE\",\n  \"hours\": [\n    {\n      \"timestamp\": \"2022-02-22T17:00:00+01:00\",\n      \"temperature_unit\": \"c\",\n      \"condition\": \"dry\",\n      \"wind_speed\": -28332884.302053913,\n      \"wind_speed_unit\": \"km/h\",\n      \"wind_direction\": \"N\"\n    },\n    {\n      \"timestamp\": \"2022-02-22T17:00:00+01:00\",\n      \"temperature_unit\": \"c\",\n      \"condition\": \"dry\",\n      \"wind_speed\": 3486043.417602107,\n      \"wind_speed_unit\": \"km/h\",\n      \"wind_direction\": \"N\"\n    }\n  ]\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://flexweather.com/api",
+			"type": "string"
+		}
+	]
+}
