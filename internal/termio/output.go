@@ -18,12 +18,22 @@ func init() {
 	}
 }
 
-func ClearScreen() {
+func ClearScreen(toast *string) {
   fmt.Print("\033[2J")
+	if toast != nil {
+		PrintToast(toast)
+	}
 }
 
 func Clip(text string) {
 	clipboard.Write(clipboard.FmtText, []byte(text))
+}
+
+func PrintToast(toast *string) {
+	if toast != nil && len(*toast) > 0 {
+		fmt.Print(*toast+"\n")
+		*toast = ""
+	}
 }
 
 func PrintList(files []string) {
@@ -50,12 +60,14 @@ func PrintList(files []string) {
 	writer.Flush()
 }
 
-func PrintLoopHelp(helps []string) {
-	fmt.Println("====================HELP====================")
+func HelpText(helps []string) string {
+	var helpText string
+	helpText += "====================HELP====================\n"
 	for _, help := range helps {
-		fmt.Println(help)
+		helpText += help + "\n"
 	}
-	fmt.Println("============================================")
+	helpText += "============================================\n"
+	return helpText
 }
 
 func getNumOfColumns() int {
