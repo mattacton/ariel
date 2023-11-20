@@ -1,6 +1,8 @@
 package request
 
 import (
+	"fmt"
+
 	"github.com/rbretecher/go-postman-collection"
 )
 
@@ -16,7 +18,12 @@ func RequestNames(requests []*postman.Items) []string {
 		if IsDir(request) {
 			names = append(names, "(d)"+request.Name)
 		} else {
-			names = append(names, request.Name)
+			var method string
+			if request.Request != nil {
+				method = fmt.Sprint("(", string(request.Request.Method), ") ")
+			}
+
+			names = append(names, method+request.Name)
 		}
 	}
 	return names

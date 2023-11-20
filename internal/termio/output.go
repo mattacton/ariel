@@ -19,7 +19,7 @@ func init() {
 }
 
 func ClearScreen(toast *string) {
-  fmt.Print("\033[2J")
+	fmt.Print("\033[2J")
 	if toast != nil {
 		PrintToast(toast)
 	}
@@ -31,7 +31,7 @@ func Clip(text string) {
 
 func PrintToast(toast *string) {
 	if toast != nil && len(*toast) > 0 {
-		fmt.Print(*toast+"\n")
+		fmt.Print(*toast + "\n")
 		*toast = ""
 	}
 }

@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "4ccd6521-9adf-4d2e-9fef-7099e2beb4d0",
+		"name": "Rando Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14068225"
+	},
+	"item": [
+		{
+			"name": "New Contact",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Passit",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "someUser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Bob",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mail@test.test",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "555-867-5309",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "somewhere.test/contacts",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contacts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "somebearertokenhere",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "somewhere.test/contacts",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get contact by id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "secretapikey",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "somewhere.test/contacts/:id",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "123987"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search for contact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "somewhere.test/contacts?createdDate=<=03-10-2020&name=Ba",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts"
+					],
+					"query": [
+						{
+							"key": "createdDate",
+							"value": "<=03-10-2020"
+						},
+						{
+							"key": "name",
+							"value": "Ba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Barbara",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "somewhere.test/contacts/:id",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "123987"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"123987\",\n    \"name\": \"Barbara\",\n    \"phone\": \"555-867-5309\",\n    \"email\": \"email@test.test\",\n    \"hobbyId\": 33\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "somewhere.test/contacts/:id",
+					"host": [
+						"somewhere",
+						"test"
+					],
+					"path": [
+						"contacts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "123987"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
