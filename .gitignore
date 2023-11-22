@@ -7,7 +7,7 @@
 *.dll
 *.so
 *.dylib
-ariel
+/ariel
 
 # Test binary, built with `go test -c`
 *.test

@@ -8,20 +8,19 @@ jobs:
   release-binaries:
     name: Release Binaries
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     strategy:
       matrix:
-        goos: [linux, darwin, windows]
-        goarch: [arm, arm64, amd64]
+        goos: [darwin]
+        goarch: [arm,arm64]
         exclude:
         - goarch: arm
           goos: darwin
-        - goarch: arm
-          goos: windows
-        - goarch: arm64
-          goos: windows
     steps:
     - uses: actions/checkout@v3
-    - uses: wangyoucao577/go-release-action@v1.30
+    - run: ls -al
+    - uses: wangyoucao577/go-release-action@v1.40
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         project_path: "./cmd/ariel"
